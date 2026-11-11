@@ -1,0 +1,8 @@
+{
+  "name": "Codewithbelia Portfolio 6",
+  "description": "Full-stack personal portfolio and content management platform with Cloud Firestore and Authentication.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

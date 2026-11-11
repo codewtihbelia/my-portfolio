@@ -1,0 +1,6 @@
+{
+  "summary":  "Implementation plan for transitioning from SVG masks to a photorealistic Landon Norris cursor flashlight reveal using the user's matching transparent cutout images (/heroBanner.png and /heroBannerCover.png), with a clean rest state and zero SVGs.",
+  "updatedAt":  "2026-11-10T08:19:45.801576224Z",
+  "requestFeedback":  true,
+  "userFacing":  true
+}

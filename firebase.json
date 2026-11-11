@@ -1,0 +1,10 @@
+{
+  "firestore": {
+    "database": "ai-studio-codewithbeliadev-a84c410e-ae08-4c93-9ab4-91dac294c0d4",
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  },
+  "storage": {
+    "rules": "storage.rules"
+  }
+}

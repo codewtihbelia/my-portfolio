@@ -1,0 +1,113 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    // Admins collection
+    match /admins/{adminId} {
+      allow read, write: if true;
+    }
+
+    // Profiles: Public read & management
+    match /profiles/{profileId} {
+      allow read, write: if true;
+    }
+
+    // Global catch-all rule for development and seamless portfolio access
+    match /{document=**} {
+      allow read, write: if true;
+    }
+
+    // Projects: Public read & management
+    match /projects/{projectId} {
+      allow read, write: if true;
+    }
+    match /Project/{projectId} {
+      allow read, write: if true;
+    }
+
+    // Skills: Public read & management
+    match /skills/{skillId} {
+      allow read, write: if true;
+    }
+
+    // Experiences: Public read & management
+    match /experiences/{experienceId} {
+      allow read, write: if true;
+    }
+
+    // Education: Public read & management
+    match /education/{educationId} {
+      allow read, write: if true;
+    }
+
+    // Certifications: Public read & management
+    match /certifications/{certificationId} {
+      allow read, write: if true;
+    }
+
+    // Services: Public read & management
+    match /services/{serviceId} {
+      allow read, write: if true;
+    }
+
+    // Blog Posts: Public read & management
+    match /blogPosts/{postId} {
+      allow read, write: if true;
+    }
+
+    // Blog Categories: Public read & management
+    match /blogCategories/{categoryId} {
+      allow read, write: if true;
+    }
+
+    // Social Links: Public read & management
+    match /socialLinks/{linkId} {
+      allow read, write: if true;
+    }
+
+    // Testimonials: Public read & management
+    match /testimonials/{testimonialId} {
+      allow read, write: if true;
+    }
+
+    // Resume: Public read & management
+    match /resume/{resumeId} {
+      allow read, write: if true;
+    }
+
+    // Media: Public read & management
+    match /media/{mediaId} {
+      allow read, write: if true;
+    }
+
+    // Site Settings: Public read & management
+    match /siteSettings/{settingsId} {
+      allow read, write: if true;
+    }
+
+    // Messages (Contact form & Admin review):
+    match /messages/{messageId} {
+      allow read, write: if true;
+    }
+
+    // Analytics: Public can log event (create), admin can read and manage
+    match /analytics/{analyticsId} {
+      allow read, write: if true;
+    }
+
+    // Activity Logs: Public read/write for audit logging
+    match /activityLogs/{logId} {
+      allow read, write: if true;
+    }
+
+    // Connection testing
+    match /test/{testId} {
+      allow read, write: if true;
+    }
+  }
+}

@@ -1,0 +1,397 @@
+{
+  "entities": {
+    "Profile": {
+      "title": "Profile",
+      "description": "Developer personal and professional profile details",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "professionalTitle": { "type": "string" },
+        "shortIntroduction": { "type": "string" },
+        "biography": { "type": "string" },
+        "location": { "type": "string" },
+        "email": { "type": "string" },
+        "phone": { "type": "string" },
+        "profileImage": { "type": "string" },
+        "coverImage": { "type": "string" },
+        "availability": { "type": "string" },
+        "availabilityMessage": { "type": "string" },
+        "yearsOfExperience": { "type": "string" },
+        "resumeUrl": { "type": "string" },
+        "githubUrl": { "type": "string" },
+        "linkedinUrl": { "type": "string" },
+        "facebookUrl": { "type": "string" },
+        "websiteUrl": { "type": "string" }
+      },
+      "required": ["name", "professionalTitle", "biography"]
+    },
+    "Project": {
+      "title": "Project",
+      "description": "Portfolio project case study",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "slug": { "type": "string" },
+        "shortDescription": { "type": "string" },
+        "description": { "type": "string" },
+        "category": { "type": "string" },
+        "status": { "type": "string" },
+        "featured": { "type": "boolean" },
+        "thumbnail": { "type": "string" },
+        "heroImage": { "type": "string" },
+        "gallery": { "type": "array" },
+        "technologies": { "type": "array" },
+        "features": { "type": "array" },
+        "problem": { "type": "string" },
+        "solution": { "type": "string" },
+        "developmentProcess": { "type": "string" },
+        "architecture": { "type": "string" },
+        "challenges": { "type": "string" },
+        "results": { "type": "string" },
+        "role": { "type": "string" },
+        "duration": { "type": "string" },
+        "client": { "type": "string" },
+        "liveUrl": { "type": "string" },
+        "repositoryUrl": { "type": "string" },
+        "documentationUrl": { "type": "string" },
+        "startDate": { "type": "string" },
+        "endDate": { "type": "string" },
+        "order": { "type": "number" },
+        "published": { "type": "boolean" }
+      },
+      "required": ["title", "slug", "shortDescription", "category", "status", "published"]
+    },
+    "Skill": {
+      "title": "Skill",
+      "description": "Technical skill and proficiency level",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "category": { "type": "string" },
+        "level": { "type": "string" },
+        "years": { "type": "string" },
+        "icon": { "type": "string" },
+        "description": { "type": "string" },
+        "featured": { "type": "boolean" },
+        "order": { "type": "number" }
+      },
+      "required": ["name", "category", "level"]
+    },
+    "Experience": {
+      "title": "Experience",
+      "description": "Work and professional experience history",
+      "type": "object",
+      "properties": {
+        "position": { "type": "string" },
+        "organization": { "type": "string" },
+        "location": { "type": "string" },
+        "employmentType": { "type": "string" },
+        "startDate": { "type": "string" },
+        "endDate": { "type": "string" },
+        "current": { "type": "boolean" },
+        "description": { "type": "string" },
+        "responsibilities": { "type": "array" },
+        "achievements": { "type": "array" },
+        "technologies": { "type": "array" },
+        "order": { "type": "number" }
+      },
+      "required": ["position", "organization", "employmentType", "startDate"]
+    },
+    "Education": {
+      "title": "Education",
+      "description": "Academic background record",
+      "type": "object",
+      "properties": {
+        "institution": { "type": "string" },
+        "degree": { "type": "string" },
+        "field": { "type": "string" },
+        "location": { "type": "string" },
+        "startDate": { "type": "string" },
+        "endDate": { "type": "string" },
+        "description": { "type": "string" },
+        "achievements": { "type": "array" },
+        "order": { "type": "number" }
+      },
+      "required": ["institution", "degree", "field"]
+    },
+    "Certification": {
+      "title": "Certification",
+      "description": "Professional certificate and credential",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "issuer": { "type": "string" },
+        "credentialId": { "type": "string" },
+        "issueDate": { "type": "string" },
+        "expirationDate": { "type": "string" },
+        "credentialUrl": { "type": "string" },
+        "certificateImage": { "type": "string" },
+        "description": { "type": "string" }
+      },
+      "required": ["name", "issuer"]
+    },
+    "Service": {
+      "title": "Service",
+      "description": "Service offering and capabilities",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "slug": { "type": "string" },
+        "description": { "type": "string" },
+        "icon": { "type": "string" },
+        "features": { "type": "array" },
+        "featured": { "type": "boolean" },
+        "order": { "type": "number" }
+      },
+      "required": ["title", "slug", "description"]
+    },
+    "BlogPost": {
+      "title": "BlogPost",
+      "description": "Article and blog post item",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "slug": { "type": "string" },
+        "excerpt": { "type": "string" },
+        "content": { "type": "string" },
+        "coverImage": { "type": "string" },
+        "category": { "type": "string" },
+        "tags": { "type": "array" },
+        "author": { "type": "string" },
+        "status": { "type": "string" },
+        "featured": { "type": "boolean" },
+        "publishedAt": { "type": "string" },
+        "readingTime": { "type": "string" },
+        "seoTitle": { "type": "string" },
+        "seoDescription": { "type": "string" }
+      },
+      "required": ["title", "slug", "excerpt", "content", "status"]
+    },
+    "BlogCategory": {
+      "title": "BlogCategory",
+      "description": "Category for classifying blog posts",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "slug": { "type": "string" },
+        "description": { "type": "string" }
+      },
+      "required": ["name", "slug"]
+    },
+    "SocialLink": {
+      "title": "SocialLink",
+      "description": "Social network connection link",
+      "type": "object",
+      "properties": {
+        "platform": { "type": "string" },
+        "url": { "type": "string" },
+        "username": { "type": "string" },
+        "icon": { "type": "string" },
+        "enabled": { "type": "boolean" },
+        "order": { "type": "number" }
+      },
+      "required": ["platform", "url", "enabled"]
+    },
+    "Testimonial": {
+      "title": "Testimonial",
+      "description": "Client or colleague feedback and recommendation",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "position": { "type": "string" },
+        "organization": { "type": "string" },
+        "message": { "type": "string" },
+        "photo": { "type": "string" },
+        "rating": { "type": "number" },
+        "featured": { "type": "boolean" },
+        "approved": { "type": "boolean" },
+        "order": { "type": "number" }
+      },
+      "required": ["name", "message", "rating"]
+    },
+    "Message": {
+      "title": "Message",
+      "description": "Contact form inquiry message",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "subject": { "type": "string" },
+        "projectType": { "type": "string" },
+        "budget": { "type": "string" },
+        "message": { "type": "string" },
+        "attachment": { "type": "string" },
+        "status": { "type": "string" },
+        "scheduledSlot": { "type": "string" },
+        "meetLink": { "type": "string" },
+        "agenda": { "type": "string" },
+        "calendarEventTitle": { "type": "string" },
+        "calendarEventId": { "type": "string" },
+        "replySentAt": { "type": "string" },
+        "replyNotes": { "type": "string" },
+        "meetingOutcome": { "type": "string" },
+        "meetingNotes": { "type": "string" },
+        "completedAt": { "type": "string" },
+        "followUpDate": { "type": "string" },
+        "convertedProjectId": { "type": "string" }
+      },
+      "required": ["name", "email", "message", "status"]
+    },
+    "Resume": {
+      "title": "Resume",
+      "description": "Resume document metadata and download tracking",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "fileUrl": { "type": "string" },
+        "storagePath": { "type": "string" },
+        "version": { "type": "string" },
+        "active": { "type": "boolean" },
+        "summary": { "type": "string" },
+        "downloadCount": { "type": "number" }
+      },
+      "required": ["title", "fileUrl", "active"]
+    },
+    "Media": {
+      "title": "Media",
+      "description": "Media library asset metadata",
+      "type": "object",
+      "properties": {
+        "filename": { "type": "string" },
+        "url": { "type": "string" },
+        "storagePath": { "type": "string" },
+        "type": { "type": "string" },
+        "mimeType": { "type": "string" },
+        "size": { "type": "number" },
+        "altText": { "type": "string" },
+        "category": { "type": "string" },
+        "uploadedBy": { "type": "string" }
+      },
+      "required": ["filename", "url", "type"]
+    },
+    "SiteSettings": {
+      "title": "SiteSettings",
+      "description": "Global portfolio website settings and configuration",
+      "type": "object",
+      "properties": {
+        "siteName": { "type": "string" },
+        "siteDescription": { "type": "string" },
+        "favicon": { "type": "string" },
+        "logo": { "type": "string" },
+        "defaultOgImage": { "type": "string" },
+        "primaryEmail": { "type": "string" },
+        "contactEmail": { "type": "string" },
+        "phone": { "type": "string" },
+        "location": { "type": "string" },
+        "timezone": { "type": "string" },
+        "copyrightText": { "type": "string" },
+        "googleAnalyticsId": { "type": "string" },
+        "defaultMeetUrl": { "type": "string" },
+        "maintenanceMode": { "type": "boolean" },
+        "showBlog": { "type": "boolean" },
+        "showServices": { "type": "boolean" },
+        "showTestimonials": { "type": "boolean" },
+        "showAnalytics": { "type": "boolean" }
+      },
+      "required": ["siteName", "siteDescription"]
+    },
+    "Analytics": {
+      "title": "Analytics",
+      "description": "Aggregated visitor and interaction metrics",
+      "type": "object",
+      "properties": {
+        "type": { "type": "string" },
+        "targetId": { "type": "string" },
+        "path": { "type": "string" },
+        "referrer": { "type": "string" },
+        "deviceType": { "type": "string" },
+        "timestamp": { "type": "string" }
+      },
+      "required": ["type", "timestamp"]
+    },
+    "ActivityLog": {
+      "title": "ActivityLog",
+      "description": "Administrative actions audit log",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "action": { "type": "string" },
+        "resource": { "type": "string" },
+        "resourceId": { "type": "string" },
+        "timestamp": { "type": "string" },
+        "metadata": { "type": "object" }
+      },
+      "required": ["action", "resource", "timestamp"]
+    }
+  },
+  "firestore": {
+    "/profiles/{profileId}": {
+      "schema": "Profile",
+      "description": "Personal profile documents"
+    },
+    "/projects/{projectId}": {
+      "schema": "Project",
+      "description": "Portfolio projects collection"
+    },
+    "/skills/{skillId}": {
+      "schema": "Skill",
+      "description": "Developer skills collection"
+    },
+    "/experiences/{experienceId}": {
+      "schema": "Experience",
+      "description": "Work experiences timeline"
+    },
+    "/education/{educationId}": {
+      "schema": "Education",
+      "description": "Education background history"
+    },
+    "/certifications/{certificationId}": {
+      "schema": "Certification",
+      "description": "Professional certifications and credentials"
+    },
+    "/services/{serviceId}": {
+      "schema": "Service",
+      "description": "Services offered by the developer"
+    },
+    "/blogPosts/{blogPostId}": {
+      "schema": "BlogPost",
+      "description": "Blog posts and case study articles"
+    },
+    "/blogCategories/{categoryId}": {
+      "schema": "BlogCategory",
+      "description": "Categories for blog posts"
+    },
+    "/socialLinks/{socialLinkId}": {
+      "schema": "SocialLink",
+      "description": "External social links"
+    },
+    "/testimonials/{testimonialId}": {
+      "schema": "Testimonial",
+      "description": "Recommendations and testimonials"
+    },
+    "/messages/{messageId}": {
+      "schema": "Message",
+      "description": "Inquiries from visitors via contact form"
+    },
+    "/resume/{resumeId}": {
+      "schema": "Resume",
+      "description": "Resume files and metadata"
+    },
+    "/media/{mediaId}": {
+      "schema": "Media",
+      "description": "Uploaded media assets metadata"
+    },
+    "/siteSettings/{settingsId}": {
+      "schema": "SiteSettings",
+      "description": "Global website configuration settings"
+    },
+    "/analytics/{analyticsId}": {
+      "schema": "Analytics",
+      "description": "Visitor events and counts"
+    },
+    "/activityLogs/{logId}": {
+      "schema": "ActivityLog",
+      "description": "Audit logging for admin operations"
+    }
+  }
+}

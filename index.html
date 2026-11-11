@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Journey as IT Support Specialist & Software Devloper</title>
+    <meta
+      name="description"
+      content="Full-stack personal portfolio and content management platform with Cloud Firestore and Authentication."
+    />
+    <meta
+      property="og:title"
+      content="My Journey as IT Support Specialist & Software Devloper"
+    />
+    <meta
+      property="og:description"
+      content="Full-stack personal portfolio and content management platform with Cloud Firestore and Authentication."
+    />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem("portfolio_theme");
+          var prefersDark =
+            window.matchMedia &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches;
+          if (saved === "dark" || (saved !== "light" && prefersDark)) {
+            document.documentElement.classList.add("dark");
+            document.documentElement.setAttribute("data-theme", "dark");
+            document.documentElement.style.colorScheme = "dark";
+          } else {
+            document.documentElement.classList.remove("dark");
+            document.documentElement.setAttribute("data-theme", "light");
+            document.documentElement.style.colorScheme = "light";
+          }
+
+          var savedBrand = localStorage.getItem("portfolio_brand_color");
+          if (savedBrand) {
+            document.documentElement.style.setProperty(
+              "--color-indigo-600",
+              savedBrand,
+            );
+            document.documentElement.style.setProperty(
+              "--brand-primary",
+              savedBrand,
+            );
+          }
+
+          var savedFavicon =
+            localStorage.getItem("portfolio_favicon_data") ||
+            localStorage.getItem("portfolio_profile_image");
+          if (savedFavicon) {
+            var icon = document.querySelector("link[rel~='icon']");
+            if (icon) icon.href = savedFavicon;
+            var apple = document.querySelector("link[rel='apple-touch-icon']");
+            if (apple) apple.href = savedFavicon;
+          }
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
