@@ -20,6 +20,27 @@ export interface Profile {
   updatedAt?: string;
 }
 
+export type ArchitectureTierType =
+  | "client"
+  | "gateway"
+  | "auth"
+  | "service"
+  | "database"
+  | "storage"
+  | "queue"
+  | "external";
+
+export interface ArchitectureNode {
+  id: string;
+  tier: ArchitectureTierType;
+  title: string;
+  role: string;
+  technologies: string[];
+  flowDescription: string;
+  targetNodeIds?: string[];
+  level?: number;
+}
+
 export interface Project {
   id: string;
   title: string;
@@ -54,6 +75,7 @@ export interface Project {
   solution?: string;
   developmentProcess?: string;
   architecture?: string;
+  architectureNodes?: ArchitectureNode[];
   challenges?: string;
   results?: string;
   role?: string;
@@ -346,6 +368,7 @@ export interface SiteSettings {
   copyrightText: string;
   googleAnalyticsId?: string;
   primaryColor?: string;
+  brandColor?: string;
   enableContactForm?: boolean;
   enableBlogComments?: boolean;
   enableHireMeBanner?: boolean;

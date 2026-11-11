@@ -1,14 +1,23 @@
-import React, { useEffect, useState } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
-import { 
-  ArrowLeft, ExternalLink, Github, CheckCircle2, Clock, 
-  User, Briefcase, Calendar, AlertCircle, Share2, Layers 
-} from 'lucide-react';
-import { Project } from '../types';
-import { getProjectBySlug, getProjects } from '../services/projectService';
-import { ArchitectureDiagram } from '../components/ui/ArchitectureDiagram';
-import { logAnalyticsEvent } from '../services/analyticsService';
-import { useToast } from '../components/ui/Toast';
+import React, { useEffect, useState } from "react";
+import { useParams, Link, useNavigate } from "react-router-dom";
+import {
+  ArrowLeft,
+  ExternalLink,
+  Github,
+  CheckCircle2,
+  Clock,
+  User,
+  Briefcase,
+  Calendar,
+  AlertCircle,
+  Share2,
+  Layers,
+} from "lucide-react";
+import { Project } from "../types";
+import { getProjectBySlug, getProjects } from "../services/projectService";
+import { ArchitectureDiagram } from "../components/ui/ArchitectureDiagram";
+import { logAnalyticsEvent } from "../services/analyticsService";
+import { useToast } from "../components/ui/Toast";
 
 export const ProjectDetailPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -32,19 +41,22 @@ export const ProjectDetailPage: React.FC = () => {
         setProject(found);
 
         logAnalyticsEvent({
-          type: 'project_view',
+          type: "project_view",
           targetId: found.id,
-          path: `/projects/${slug}`
+          path: `/projects/${slug}`,
         });
 
         // Load related projects in same category
         const allProjects = await getProjects(false);
         const related = allProjects
-          .filter((p) => p.slug !== slug && (p.category === found.category || p.featured))
+          .filter(
+            (p) =>
+              p.slug !== slug && (p.category === found.category || p.featured),
+          )
           .slice(0, 2);
         setRelatedProjects(related);
       } catch (err) {
-        console.warn('Project detail notice:', err);
+        console.warn("Project detail notice:", err);
       } finally {
         setLoading(false);
       }
@@ -55,14 +67,16 @@ export const ProjectDetailPage: React.FC = () => {
 
   const handleCopyLink = () => {
     navigator.clipboard.writeText(window.location.href);
-    showToast('Project link copied to clipboard!', 'success');
+    showToast("Project link copied to clipboard!", "success");
   };
 
   if (loading) {
     return (
       <div className="min-h-[60vh] flex flex-col items-center justify-center space-y-3">
         <div className="w-8 h-8 border-3 border-indigo-600 border-t-transparent rounded-full animate-spin"></div>
-        <p className="text-sm text-zinc-500">Loading case study from Cloud Firestore...</p>
+        <p className="text-sm text-zinc-500">
+          Loading case study from Cloud Firestore...
+        </p>
       </div>
     );
   }
@@ -71,7 +85,9 @@ export const ProjectDetailPage: React.FC = () => {
     return (
       <div className="max-w-2xl mx-auto px-4 py-20 text-center space-y-4">
         <AlertCircle className="w-12 h-12 text-zinc-400 mx-auto" />
-        <h1 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100">Project Not Found</h1>
+        <h1 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100">
+          Project Not Found
+        </h1>
         <p className="text-sm text-zinc-500">
           The requested project case study could not be located in Firestore.
         </p>
@@ -87,7 +103,10 @@ export const ProjectDetailPage: React.FC = () => {
   }
 
   return (
-    <div id="project-detail-page" className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-16">
+    <div
+      id="project-detail-page"
+      className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-16"
+    >
       {/* Back link & actions */}
       <div className="flex items-center justify-between">
         <Link
@@ -130,19 +149,27 @@ export const ProjectDetailPage: React.FC = () => {
           {project.role && (
             <div>
               <div className="text-zinc-400 font-medium">Role</div>
-              <div className="text-zinc-900 dark:text-zinc-100 font-semibold mt-0.5">{project.role}</div>
+              <div className="text-zinc-900 dark:text-zinc-100 font-semibold mt-0.5">
+                {project.role}
+              </div>
             </div>
           )}
           {project.duration && (
             <div>
               <div className="text-zinc-400 font-medium">Duration</div>
-              <div className="text-zinc-900 dark:text-zinc-100 font-semibold mt-0.5">{project.duration}</div>
+              <div className="text-zinc-900 dark:text-zinc-100 font-semibold mt-0.5">
+                {project.duration}
+              </div>
             </div>
           )}
           {project.client && (
             <div>
-              <div className="text-zinc-400 font-medium">Client / Organization</div>
-              <div className="text-zinc-900 dark:text-zinc-100 font-semibold mt-0.5">{project.client}</div>
+              <div className="text-zinc-400 font-medium">
+                Client / Organization
+              </div>
+              <div className="text-zinc-900 dark:text-zinc-100 font-semibold mt-0.5">
+                {project.client}
+              </div>
             </div>
           )}
           <div>
@@ -177,7 +204,11 @@ export const ProjectDetailPage: React.FC = () => {
         {/* Hero Image */}
         {project.heroImage && (
           <div className="rounded-3xl overflow-hidden aspect-video border border-zinc-200 dark:border-zinc-800 shadow-lg">
-            <img src={project.heroImage} alt={project.title} className="w-full h-full object-cover" />
+            <img
+              src={project.heroImage}
+              alt={project.title}
+              className="w-full h-full object-cover"
+            />
           </div>
         )}
       </header>
@@ -185,16 +216,22 @@ export const ProjectDetailPage: React.FC = () => {
       {/* Problem & Solution (Section 95) */}
       <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="p-6 rounded-2xl bg-rose-50/50 dark:bg-rose-950/20 border border-rose-100 dark:border-rose-900/50 space-y-3">
-          <h2 className="text-base font-bold text-rose-900 dark:text-rose-200">The Problem</h2>
+          <h2 className="text-base font-bold text-rose-900 dark:text-rose-200">
+            The Problem
+          </h2>
           <p className="text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed">
-            {project.problem || 'Identified inefficiencies in manual recording, data fragmentation, and unorganized communication channels.'}
+            {project.problem ||
+              "Identified inefficiencies in manual recording, data fragmentation, and unorganized communication channels."}
           </p>
         </div>
 
         <div className="p-6 rounded-2xl bg-emerald-50/50 dark:bg-emerald-950/20 border border-emerald-100 dark:border-emerald-900/50 space-y-3">
-          <h2 className="text-base font-bold text-emerald-900 dark:text-emerald-200">The Solution</h2>
+          <h2 className="text-base font-bold text-emerald-900 dark:text-emerald-200">
+            The Solution
+          </h2>
           <p className="text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed">
-            {project.solution || 'Engineered a centralized web platform integrating real-time database synchronization, validated inputs, and role-based permissions.'}
+            {project.solution ||
+              "Engineered a centralized web platform integrating real-time database synchronization, validated inputs, and role-based permissions."}
           </p>
         </div>
       </section>
@@ -202,15 +239,19 @@ export const ProjectDetailPage: React.FC = () => {
       {/* Core Features */}
       {project.features && project.features.length > 0 && (
         <section className="space-y-4">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100">Key Features & Modules</h2>
+          <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100">
+            Key Features & Modules
+          </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             {project.features.map((feat, idx) => (
               <div
                 key={idx}
-                className="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-sm flex items-start gap-3"
+                className="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 flex items-start gap-3"
               >
                 <CheckCircle2 className="w-5 h-5 text-indigo-600 dark:text-indigo-400 shrink-0 mt-0.5" />
-                <span className="text-sm font-medium text-zinc-800 dark:text-zinc-200">{feat}</span>
+                <span className="text-sm font-medium text-zinc-800 dark:text-zinc-200">
+                  {feat}
+                </span>
               </div>
             ))}
           </div>
@@ -219,16 +260,26 @@ export const ProjectDetailPage: React.FC = () => {
 
       {/* Architecture Visualization (Section 93) */}
       <section className="space-y-4">
-        <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100">System Architecture</h2>
+        <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100">
+          System Architecture
+        </h2>
         <p className="text-sm text-zinc-600 dark:text-zinc-400">
-          Conceptual flow diagram depicting end-user browser ingress, presentation layer, Firebase authentication guardrails, and persistent Firestore data tiers.
+          Interactive architecture topology illustrating ingress flow,
+          application compute, security guards, and data persistence for{" "}
+          {project.title}.
         </p>
-        <ArchitectureDiagram customNotes={project.architecture} />
+        <ArchitectureDiagram
+          customNotes={project.architecture}
+          nodes={project.architectureNodes}
+          projectTitle={project.title}
+        />
       </section>
 
       {/* Technology Stack Badges (Section 94) */}
       <section className="space-y-4">
-        <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100">Technologies Used</h2>
+        <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100">
+          Technologies Used
+        </h2>
         <div className="flex flex-wrap gap-2">
           {project.technologies?.map((tech) => (
             <span
@@ -245,7 +296,9 @@ export const ProjectDetailPage: React.FC = () => {
       <section className="space-y-6">
         {project.developmentProcess && (
           <div className="space-y-2">
-            <h2 className="text-xl font-bold text-zinc-900 dark:text-zinc-100">Development Process</h2>
+            <h2 className="text-xl font-bold text-zinc-900 dark:text-zinc-100">
+              Development Process
+            </h2>
             <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
               {project.developmentProcess}
             </p>
@@ -254,7 +307,9 @@ export const ProjectDetailPage: React.FC = () => {
 
         {project.challenges && (
           <div className="space-y-2">
-            <h2 className="text-xl font-bold text-zinc-900 dark:text-zinc-100">Challenges & Solutions</h2>
+            <h2 className="text-xl font-bold text-zinc-900 dark:text-zinc-100">
+              Challenges & Solutions
+            </h2>
             <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
               {project.challenges}
             </p>
@@ -263,7 +318,9 @@ export const ProjectDetailPage: React.FC = () => {
 
         {project.results && (
           <div className="p-6 rounded-2xl bg-indigo-50/50 dark:bg-indigo-950/20 border border-indigo-100 dark:border-indigo-900/50 space-y-2">
-            <h2 className="text-lg font-bold text-indigo-900 dark:text-indigo-200">Outcome & Results</h2>
+            <h2 className="text-lg font-bold text-indigo-900 dark:text-indigo-200">
+              Outcome & Results
+            </h2>
             <p className="text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed">
               {project.results}
             </p>
@@ -274,11 +331,20 @@ export const ProjectDetailPage: React.FC = () => {
       {/* Project Gallery if available */}
       {project.gallery && project.gallery.length > 0 && (
         <section className="space-y-4">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100">Project Gallery</h2>
+          <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100">
+            Project Gallery
+          </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {project.gallery.map((imgUrl, i) => (
-              <div key={i} className="rounded-2xl overflow-hidden aspect-video border border-zinc-200 dark:border-zinc-800">
-                <img src={imgUrl} alt={`Screenshot ${i + 1}`} className="w-full h-full object-cover" />
+              <div
+                key={i}
+                className="rounded-2xl overflow-hidden aspect-video border border-zinc-200 dark:border-zinc-800"
+              >
+                <img
+                  src={imgUrl}
+                  alt={`Screenshot ${i + 1}`}
+                  className="w-full h-full object-cover"
+                />
               </div>
             ))}
           </div>
@@ -288,7 +354,9 @@ export const ProjectDetailPage: React.FC = () => {
       {/* Related Projects */}
       {relatedProjects.length > 0 && (
         <section className="space-y-6 pt-8 border-t border-zinc-200 dark:border-zinc-800">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100">Related Case Studies</h2>
+          <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100">
+            Related Case Studies
+          </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {relatedProjects.map((rel) => (
               <Link
@@ -296,9 +364,15 @@ export const ProjectDetailPage: React.FC = () => {
                 to={`/projects/${rel.slug}`}
                 className="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:border-indigo-500 transition-colors space-y-2 block"
               >
-                <div className="text-xs text-indigo-600 dark:text-indigo-400 font-semibold">{rel.category}</div>
-                <h3 className="font-bold text-base text-zinc-900 dark:text-zinc-100">{rel.title}</h3>
-                <p className="text-xs text-zinc-500 line-clamp-2">{rel.shortDescription}</p>
+                <div className="text-xs text-indigo-600 dark:text-indigo-400 font-semibold">
+                  {rel.category}
+                </div>
+                <h3 className="font-bold text-base text-zinc-900 dark:text-zinc-100">
+                  {rel.title}
+                </h3>
+                <p className="text-xs text-zinc-500 line-clamp-2">
+                  {rel.shortDescription}
+                </p>
               </Link>
             ))}
           </div>

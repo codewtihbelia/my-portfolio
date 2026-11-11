@@ -29,6 +29,7 @@ import { useToast } from "../../components/ui/Toast";
 import { Select } from "../../components/ui/Select";
 import { Spinner } from "../../components/ui/Spinner";
 import { databaseId, firebaseConfig } from "../../lib/firebase";
+import { ArchitectureBuilder } from "../../components/admin/ArchitectureBuilder";
 
 export const AdminProjectsPage: React.FC = () => {
   const [projects, setProjects] = useState<Project[]>([]);
@@ -74,6 +75,7 @@ export const AdminProjectsPage: React.FC = () => {
     ],
     architecture:
       "Public Users -> Web Application -> Firebase Auth & Cloud Firestore -> Cloud Storage",
+    architectureNodes: undefined,
     developmentProcess: "",
     challenges: "",
     results: "",
@@ -168,6 +170,7 @@ export const AdminProjectsPage: React.FC = () => {
       features: project.features || [],
       technologies: project.technologies || [],
       architecture: project.architecture || "",
+      architectureNodes: project.architectureNodes || undefined,
       developmentProcess: project.developmentProcess || "",
       challenges: project.challenges || "",
       results: project.results || "",
@@ -778,19 +781,22 @@ export const AdminProjectsPage: React.FC = () => {
                 </div>
               </div>
 
-              {/* Architecture diagram notes */}
+              {/* Architecture Visualization Builder */}
               <div>
                 <label className="block font-bold uppercase tracking-wider text-zinc-700 dark:text-zinc-300 mb-1">
-                  Architecture Visualization Notes
+                  System Architecture & Flow Pipeline
                 </label>
-                <input
-                  type="text"
-                  value={formData.architecture}
-                  onChange={(e) =>
-                    setFormData((p) => ({ ...p, architecture: e.target.value }))
-                  }
-                  placeholder="Public Users -> Web App -> Firebase Auth & Firestore -> Storage"
-                  className="w-full px-3 py-2 text-xs rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100"
+                <ArchitectureBuilder
+                  key={editingId || "new-project"}
+                  initialNodes={formData.architectureNodes}
+                  initialNotes={formData.architecture}
+                  onChange={(updatedNodes, summaryText) => {
+                    setFormData((p) => ({
+                      ...p,
+                      architectureNodes: updatedNodes,
+                      architecture: JSON.stringify(updatedNodes),
+                    }));
+                  }}
                 />
               </div>
 
